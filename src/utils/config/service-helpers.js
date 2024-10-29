@@ -464,8 +464,9 @@ export function cleanServiceGroups(groups) {
           // speedtest
           bitratePrecision,
 
-          // sonarr, radarr
+          // sabnzbd, sonarr, radarr
           enableQueue,
+          limit,
 
           // stocks
           watchlist,
@@ -557,8 +558,10 @@ export function cleanServiceGroups(groups) {
             cleanedService.widget.showEpisodeNumber = !!JSON.parse(showEpisodeNumber);
           if (enableUser !== undefined) cleanedService.widget.enableUser = !!JSON.parse(enableUser);
         }
-        if (["sonarr", "radarr"].includes(type)) {
+        if (["sonarr", "radarr", "sabnzbd"].includes(type)) {
           if (enableQueue !== undefined) cleanedService.widget.enableQueue = JSON.parse(enableQueue);
+          if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
+          if (limit) cleanedService.widget.limit = JSON.parse(limit);
         }
         if (type === "truenas") {
           if (enablePools !== undefined) cleanedService.widget.enablePools = JSON.parse(enablePools);
