@@ -1,10 +1,10 @@
 import { useTranslation } from "next-i18next";
 
+import QueueEntry from "../../components/widgets/queue/queueEntry";
+
 import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
-
-import QueueEntry from "../../components/widgets/queue/queueEntry";
 
 function getProgress(sizeLeft, size) {
   return sizeLeft === 0 ? 100 : (1 - sizeLeft / size) * 100;
@@ -30,15 +30,19 @@ export default function Component({ service }) {
 
   const enableQueue = !!widget?.enableQueue; // default false
 
-  const { data: queueData, error: queueError } = widget?.refreshInterval
-    ? useWidgetAPI(widget, "queue", {
+  const options = widget?.refreshInterval
+    ? {
         refreshInterval: Math.max(1000, widget.refreshInterval),
         limit: widget?.limit ? widget.limit : defaultLimit,
-      })
-    : useWidgetAPI(widget, "queue", {
+      }
+    : {
         refreshInterval: defaultInterval,
         limit: widget?.limit ? widget.limit : defaultLimit,
-      });
+      };
+
+  // call the Hook unconditionally with the computed options
+  // avoids lint error
+  const { data: queueData, error: queueError } = useWidgetAPI(widget, "queue", options);
 
   if (queueError) {
     return <Container service={service} error={queueError} />;
