@@ -368,6 +368,9 @@ export function cleanServiceGroups(groups) {
           repositoryId,
           userEmail,
 
+          // beszel
+          systemId,
+
           // calendar
           firstDayInWeek,
           integrations,
@@ -510,6 +513,10 @@ export function cleanServiceGroups(groups) {
         if (type === "azuredevops") {
           if (userEmail) cleanedService.widget.userEmail = userEmail;
           if (repositoryId) cleanedService.widget.repositoryId = repositoryId;
+        }
+
+        if (type === "beszel") {
+          if (systemId) cleanedService.widget.systemId = systemId;
         }
 
         if (type === "coinmarketcap") {
