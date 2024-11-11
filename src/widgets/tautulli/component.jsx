@@ -36,7 +36,7 @@ function generateStreamTitle(session, enableUser, showEpisodeNumber) {
     stream_title = full_title;
   }
 
-  return enableUser ? `${stream_title} (${friendly_name})` : stream_title;
+  return enableUser ? `(${friendly_name}) ${stream_title}` : stream_title;
 }
 
 function SingleSessionEntry({ session, enableUser, showEpisodeNumber }) {
