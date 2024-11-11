@@ -204,17 +204,9 @@ export default function Component({ service }) {
 
   const { widget } = service;
 
-  const {
-    data: sessionsData,
-    error: sessionsError,
-    mutate: sessionMutate,
-  } = useWidgetAPI(widget, "Sessions", {
-    refreshInterval: 5000,
-  });
+  const { data: sessionsData, error: sessionsError, mutate: sessionMutate } = useWidgetAPI(widget, "Sessions");
 
-  const { data: countData, error: countError } = useWidgetAPI(widget, "Count", {
-    refreshInterval: 60000,
-  });
+  const { data: countData, error: countError } = useWidgetAPI(widget, "Count");
 
   async function handlePlayCommand(session, command) {
     const params = getURLSearchParams(widget, command);

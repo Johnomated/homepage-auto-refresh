@@ -20,7 +20,6 @@ function fromUnits(value) {
   return parseFloat(number) * 1024 ** index;
 }
 
-const defaultInterval = 30000;
 const defaultLimit = 5;
 
 export default function Component({ service }) {
@@ -30,17 +29,11 @@ export default function Component({ service }) {
 
   const enableQueue = !!widget?.enableQueue; // default false
 
-  const options = widget?.refreshInterval
-    ? {
-        refreshInterval: Math.max(1000, widget.refreshInterval),
-        limit: widget?.limit ? widget.limit : defaultLimit,
-      }
-    : {
-        refreshInterval: defaultInterval,
-        limit: widget?.limit ? widget.limit : defaultLimit,
-      };
+  const options = {
+    limit: widget?.limit ? widget.limit : defaultLimit,
+  };
 
-  // call the Hook unconditionally with the computed options
+  // call the widget api with options
   // avoids lint error
   const { data: queueData, error: queueError } = useWidgetAPI(widget, "queue", options);
 

@@ -9,9 +9,7 @@ export default function Component({ service }) {
 
   const { widget } = service;
 
-  const { data: jdownloaderData, error: jdownloaderAPIError } = useWidgetAPI(widget, "unified", {
-    refreshInterval: 30000,
-  });
+  const { data: jdownloaderData, error: jdownloaderAPIError } = useWidgetAPI(widget, "unified");
 
   if (jdownloaderAPIError) {
     return <Container service={service} error={jdownloaderAPIError} />;

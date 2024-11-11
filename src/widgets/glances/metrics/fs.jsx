@@ -5,18 +5,14 @@ import Block from "../components/block";
 
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
-const defaultInterval = 1000;
-
 export default function Component({ service }) {
   const { t } = useTranslation();
   const { widget } = service;
-  const { chart, refreshInterval = defaultInterval, version = 3 } = widget;
+  const { chart, version = 3 } = widget;
   const [, fsName] = widget.metric.split("fs:");
   const diskUnits = widget.diskUnits === "bbytes" ? "common.bbytes" : "common.bytes";
 
-  const { data, error } = useWidgetAPI(widget, `${version}/fs`, {
-    refreshInterval: Math.max(defaultInterval, refreshInterval),
-  });
+  const { data, error } = useWidgetAPI(widget, `${version}/fs`);
 
   if (error) {
     return <Container error={error} widget={widget} />;

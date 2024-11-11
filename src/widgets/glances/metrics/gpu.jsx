@@ -10,19 +10,16 @@ import useWidgetAPI from "utils/proxy/use-widget-api";
 const ChartDual = dynamic(() => import("../components/chart_dual"), { ssr: false });
 
 const defaultPointsLimit = 15;
-const defaultInterval = 1000;
 
 export default function Component({ service }) {
   const { t } = useTranslation();
   const { widget } = service;
-  const { chart, refreshInterval = defaultInterval, pointsLimit = defaultPointsLimit, version = 3 } = widget;
+  const { chart, pointsLimit = defaultPointsLimit, version = 3 } = widget;
   const [, gpuName] = widget.metric.split(":");
 
   const [dataPoints, setDataPoints] = useState(new Array(pointsLimit).fill({ a: 0, b: 0 }, 0, pointsLimit));
 
-  const { data, error } = useWidgetAPI(widget, `${version}/gpu`, {
-    refreshInterval: Math.max(defaultInterval, refreshInterval),
-  });
+  const { data, error } = useWidgetAPI(widget, `${version}/gpu`);
 
   useEffect(() => {
     if (data && !data.error) {

@@ -68,20 +68,13 @@ function Mem({ quicklookData, className = "" }) {
   );
 }
 
-const defaultInterval = 1000;
-const defaultSystemInterval = 30000; // This data (OS, hostname, distribution) is usually super stable.
-
 export default function Component({ service }) {
   const { widget } = service;
-  const { chart, refreshInterval = defaultInterval, version = 3 } = widget;
+  const { chart, version = 3 } = widget;
 
-  const { data: quicklookData, errorL: quicklookError } = useWidgetAPI(service.widget, `${version}/quicklook`, {
-    refreshInterval,
-  });
+  const { data: quicklookData, errorL: quicklookError } = useWidgetAPI(service.widget, `${version}/quicklook`);
 
-  const { data: systemData, errorL: systemError } = useWidgetAPI(service.widget, `${version}/system`, {
-    refreshInterval: defaultSystemInterval,
-  });
+  const { data: systemData, errorL: systemError } = useWidgetAPI(service.widget, `${version}/system`);
 
   if (quicklookError || (quicklookData && quicklookData.error)) {
     const qlError = quicklookError || quicklookData.error;

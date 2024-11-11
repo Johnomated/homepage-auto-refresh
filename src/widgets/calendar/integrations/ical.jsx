@@ -20,9 +20,7 @@ function simpleHash(str) {
 
 export default function Integration({ config, params, setEvents, hideErrors, timezone }) {
   const { t } = useTranslation();
-  const { data: icalData, error: icalError } = useWidgetAPI(config, config.name, {
-    refreshInterval: 300000, // 5 minutes
-  });
+  const { data: icalData, error: icalError } = useWidgetAPI(config, config.name);
 
   useEffect(() => {
     let parsedIcal;

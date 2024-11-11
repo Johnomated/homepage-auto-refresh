@@ -16,18 +16,14 @@ const statusMap = {
   X: <ResolvedIcon icon="mdi-rhombus-outline" width={32} height={32} />, // dead
 };
 
-const defaultInterval = 1000;
-
 export default function Component({ service }) {
   const { t } = useTranslation();
   const { widget } = service;
-  const { chart, refreshInterval = defaultInterval, version = 3 } = widget;
+  const { chart, version = 3 } = widget;
 
   const memoryInfoKey = version === 3 ? 0 : "data";
 
-  const { data, error } = useWidgetAPI(service.widget, `${version}/processlist`, {
-    refreshInterval: Math.max(defaultInterval, refreshInterval),
-  });
+  const { data, error } = useWidgetAPI(service.widget, `${version}/processlist`);
 
   if (error) {
     return <Container service={service} widget={widget} />;

@@ -10,12 +10,11 @@ import useWidgetAPI from "utils/proxy/use-widget-api";
 const ChartDual = dynamic(() => import("../components/chart_dual"), { ssr: false });
 
 const defaultPointsLimit = 15;
-const defaultInterval = 1000;
 
 export default function Component({ service }) {
   const { t } = useTranslation();
   const { widget } = service;
-  const { chart, refreshInterval = defaultInterval, pointsLimit = defaultPointsLimit, version = 3 } = widget;
+  const { chart, pointsLimit = defaultPointsLimit, version = 3 } = widget;
   const [, diskName] = widget.metric.split(":");
 
   const [dataPoints, setDataPoints] = useState(
@@ -23,9 +22,7 @@ export default function Component({ service }) {
   );
   const [ratePoints, setRatePoints] = useState(new Array(pointsLimit).fill({ a: 0, b: 0 }, 0, pointsLimit));
 
-  const { data, error } = useWidgetAPI(service.widget, `${version}/diskio`, {
-    refreshInterval: Math.max(defaultInterval, refreshInterval),
-  });
+  const { data, error } = useWidgetAPI(service.widget, `${version}/diskio`);
 
   const calculateRates = (d) =>
     d.map((item) => ({

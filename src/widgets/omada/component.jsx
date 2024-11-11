@@ -9,9 +9,7 @@ export default function Component({ service }) {
 
   const { widget } = service;
 
-  const { data: omadaData, error: omadaAPIError } = useWidgetAPI(widget, "info", {
-    refreshInterval: 5000,
-  });
+  const { data: omadaData, error: omadaAPIError } = useWidgetAPI(widget, "info");
 
   if (omadaAPIError) {
     return <Container service={service} error={omadaAPIError} />;

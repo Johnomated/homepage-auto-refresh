@@ -10,19 +10,16 @@ import useWidgetAPI from "utils/proxy/use-widget-api";
 const Chart = dynamic(() => import("../components/chart"), { ssr: false });
 
 const defaultPointsLimit = 15;
-const defaultInterval = 1000;
 
 export default function Component({ service }) {
   const { t } = useTranslation();
   const { widget } = service;
-  const { chart, refreshInterval = defaultInterval, pointsLimit = defaultPointsLimit, version = 3 } = widget;
+  const { chart, pointsLimit = defaultPointsLimit, version = 3 } = widget;
   const [, sensorName] = widget.metric.split(":");
 
   const [dataPoints, setDataPoints] = useState(new Array(pointsLimit).fill({ value: 0 }, 0, pointsLimit));
 
-  const { data, error } = useWidgetAPI(service.widget, `${version}/sensors`, {
-    refreshInterval: Math.max(defaultInterval, refreshInterval),
-  });
+  const { data, error } = useWidgetAPI(service.widget, `${version}/sensors`);
 
   useEffect(() => {
     if (data && !data.error) {

@@ -5,7 +5,7 @@ import useWidgetAPI from "utils/proxy/use-widget-api";
 export default function Component({ service }) {
   const { widget } = service;
 
-  const { data, error } = useWidgetAPI(widget, null, { refreshInterval: 60000 });
+  const { data, error } = useWidgetAPI(widget, null);
   if (error) {
     return <Container service={service} error={error} />;
   }

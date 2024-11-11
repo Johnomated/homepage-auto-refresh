@@ -549,7 +549,7 @@ export function cleanServiceGroups(groups) {
           if (allowFullscreen) cleanedService.widget.allowFullscreen = allowFullscreen;
           if (loadingStrategy) cleanedService.widget.loadingStrategy = loadingStrategy;
           if (allowScrolling) cleanedService.widget.allowScrolling = allowScrolling;
-          if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
+          // if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
         }
         if (["opnsense", "pfsense"].includes(type)) {
           if (wan) cleanedService.widget.wan = wan;
@@ -567,7 +567,7 @@ export function cleanServiceGroups(groups) {
         }
         if (["sonarr", "radarr", "sabnzbd"].includes(type)) {
           if (enableQueue !== undefined) cleanedService.widget.enableQueue = JSON.parse(enableQueue);
-          if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
+          // if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
           if (limit) cleanedService.widget.limit = JSON.parse(limit);
         }
         if (type === "truenas") {
@@ -591,7 +591,7 @@ export function cleanServiceGroups(groups) {
           } else {
             cleanedService.widget.chart = true;
           }
-          if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
+          // if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
           if (pointsLimit) cleanedService.widget.pointsLimit = pointsLimit;
           if (diskUnits) cleanedService.widget.diskUnits = diskUnits;
         }
@@ -608,7 +608,7 @@ export function cleanServiceGroups(groups) {
         if (type === "customapi") {
           if (mappings) cleanedService.widget.mappings = mappings;
           if (display) cleanedService.widget.display = display;
-          if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
+          // if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
         }
         if (type === "calendar") {
           if (integrations) cleanedService.widget.integrations = integrations;
@@ -648,6 +648,10 @@ export function cleanServiceGroups(groups) {
         }
         if (type === "vikunja") {
           if (enableTaskList !== undefined) cleanedService.widget.enableTaskList = !!enableTaskList;
+        }
+
+        if (refreshInterval !== undefined) {
+          cleanedService.widget.refreshInterval = refreshInterval;
         }
       }
 

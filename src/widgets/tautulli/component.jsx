@@ -140,9 +140,7 @@ export default function Component({ service }) {
 
   const { widget } = service;
 
-  const { data: activityData, error: activityError } = useWidgetAPI(widget, "get_activity", {
-    refreshInterval: 5000,
-  });
+  const { data: activityData, error: activityError } = useWidgetAPI(widget, "get_activity");
 
   const enableUser = !!service.widget?.enableUser; // default is false
   const expandOneStreamToTwoRows = service.widget?.expandOneStreamToTwoRows !== false; // default is true

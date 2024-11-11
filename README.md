@@ -1,3 +1,20 @@
+<p align="center">Forked from <a href="https://github.com/gethomepage/homepage">homepage.</a></p>
+<p align="center">This fork allows all service widgets that use the <em>useWidgetAPI</em> to be automatically refreshed when using the <em>refreshInterval</em> key in the services.yaml file.</p>
+
+<p align="center">In the example below, the plex widget will be set to auto refresh every 5 seconds. If refreshInterval is not defined then the default behavior of focusing the page will be used. Minimum refreshInterval is 1000 ms.</p>
+
+```yaml
+- Plex:
+    icon: plex.png
+    href: https://app.plex.tv
+    ping: http://192.168.50.50:32400
+    widget:
+      type: plex
+      url: http://192.168.50.50:32400
+      key: apiKey
+      refreshInterval: 5000 # optional, time in milliseconds
+```
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="images/banner_light@2x.png">

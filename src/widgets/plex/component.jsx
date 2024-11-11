@@ -9,9 +9,7 @@ export default function Component({ service }) {
 
   const { widget } = service;
 
-  const { data: plexData, error: plexAPIError } = useWidgetAPI(widget, "unified", {
-    refreshInterval: 5000,
-  });
+  const { data: plexData, error: plexAPIError } = useWidgetAPI(widget, "unified");
 
   if (plexAPIError) {
     return <Container service={service} error={plexAPIError} />;
