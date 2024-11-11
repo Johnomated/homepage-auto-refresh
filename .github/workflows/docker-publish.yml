@@ -13,7 +13,7 @@ on:
       - main
       - feature/**
       - dev
-      - auto-refresh
+      # - auto-refresh
     # Publish semver tags as releases.
     tags: ["v*.*.*"]
     paths-ignore:
@@ -48,8 +48,8 @@ jobs:
 
   build:
     name: Docker Build & Push
-    if: github.repository == 'johnomated/homepage'
-    runs-on: ubuntu-22.04 #self-hosted was default
+    if: github.repository == 'gethomepage/homepage' #johnomated/homepage
+    runs-on: self-hosted #ubuntu-22.04
     needs:
       - pre-commit
     permissions:
