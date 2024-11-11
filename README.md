@@ -15,6 +15,39 @@
       refreshInterval: 5000 # optional, time in milliseconds
 ```
 
+## Deploy With Docker
+
+Using docker compose:
+
+```yaml
+services:
+  homepage:
+    image: ghcr.io/johnomated/homepage-auto-refresh:latest
+    container_name: homepage
+    environment:
+      PUID: 1000 # optional, your user id
+      PGID: 1000 # optional, your group id
+    ports:
+      - 3000:3000
+    volumes:
+      - /path/to/config:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock:ro # optional, for docker integrations
+    restart: unless-stopped
+```
+
+or docker run:
+
+```bash
+docker run --name homepage \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -p 3000:3000 \
+  -v /path/to/config:/app/config \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  --restart unless-stopped \
+  ghcr.io/johnomated/homepage-auto-refresh:latest
+```
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="images/banner_light@2x.png">
