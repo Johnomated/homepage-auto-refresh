@@ -469,6 +469,7 @@ export function cleanServiceGroups(groups) {
 
           // sabnzbd, sonarr, radarr
           enableQueue,
+          enableHistory,
           limit,
 
           // stocks
@@ -567,6 +568,7 @@ export function cleanServiceGroups(groups) {
         }
         if (["sonarr", "radarr", "sabnzbd"].includes(type)) {
           if (enableQueue !== undefined) cleanedService.widget.enableQueue = JSON.parse(enableQueue);
+          if (enableHistory !== undefined) cleanedService.widget.enableHistory = JSON.parse(enableHistory);
           // if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
           if (limit) cleanedService.widget.limit = JSON.parse(limit);
         }

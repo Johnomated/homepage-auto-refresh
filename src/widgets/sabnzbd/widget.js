@@ -10,6 +10,11 @@ const widget = {
       validate: ["queue"],
       params: ["limit"], // limit caps the number of queued jobs to display
     },
+    history: {
+      endpoint: "history",
+      validate: ["history"],
+      params: ["limit"], // limit caps the number of queued jobs to display
+    },
   },
 };
 

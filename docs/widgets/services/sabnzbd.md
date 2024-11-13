@@ -16,5 +16,6 @@ widget:
   key: apikeyapikeyapikeyapikeyapikey
   refreshInterval: 5000 # optional, minimum is 1000 ms
   enableQueue: true # optional, defaults to false, does not interfere with default queue block
+  enableHistory: true # optional, defaults to false
   limit: 10 # optional, max number of queue progress bars to display, defaults to 5
 ```

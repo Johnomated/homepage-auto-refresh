@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 
-import QueueEntry from "../../components/widgets/queue/queueEntry";
-
+import HistoryEntry from "components/widgets/history/historyEntry";
+import QueueEntry from "components/widgets/queue/queueEntry";
 import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
 import useWidgetAPI from "utils/proxy/use-widget-api";
@@ -28,6 +28,7 @@ export default function Component({ service }) {
   const { widget } = service;
 
   const enableQueue = !!widget?.enableQueue; // default false
+  const enableHistory = !!widget?.enableHistory; // default false
 
   const options = {
     limit: widget?.limit ? widget.limit : defaultLimit,
@@ -36,9 +37,14 @@ export default function Component({ service }) {
   // call the widget api with options
   // avoids lint error
   const { data: queueData, error: queueError } = useWidgetAPI(widget, "queue", options);
+  const { data: historyData, error: historyError } = useWidgetAPI(widget, "history", options);
 
   if (queueError) {
     return <Container service={service} error={queueError} />;
+  }
+
+  if (historyError) {
+    return <Container service={service} error={historyError} />;
   }
 
   if (!queueData) {
@@ -59,7 +65,7 @@ export default function Component({ service }) {
         <Block label="sabnzbd.timeleft" value={queueData.queue.timeleft} />
       </Container>
       {enableQueue &&
-        queueData.queue.slots.map((slot) => (
+        queueData?.queue?.slots?.map((slot) => (
           <QueueEntry
             progress={getProgress(slot.mbleft, slot.mb)}
             timeLeft={slot.timeleft}
@@ -67,6 +73,16 @@ export default function Component({ service }) {
             activity={slot.percentage === "0" ? "Queued" : slot.status}
             key={slot.nzo_id}
           />
+        ))}
+
+      {/* line separator for queue and history */}
+      {enableHistory && historyData?.history?.slots?.length > 0 && (
+        <div className="my-2 mx-auto h-px bg-theme-300 dark:bg-theme-700 w-5/6" />
+      )}
+
+      {enableHistory &&
+        historyData?.history?.slots?.map((slot) => (
+          <HistoryEntry title={slot.name} activity={slot.status} key={slot.nzo_id} />
         ))}
     </>
   );
