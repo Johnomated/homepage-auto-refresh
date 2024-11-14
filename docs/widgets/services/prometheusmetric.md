@@ -7,13 +7,13 @@ Learn more about [Querying Prometheus](https://prometheus.io/docs/prometheus/lat
 
 This widget can show metrics for your service defined by PromQL queries which are requested from a running Prometheus instance.
 
-Quries can be defined in the `metrics` array of the widget along with a label to be used to present the metric value. You can optionally specify a global `refreshInterval` in milliseconds and/or define the `refreshInterval` per metric. Inside the optional `format` object of a metric various formatting styles and transformations can be applied (see below).
+Queries can be defined in the `metrics` array of the widget along with a label to be used to present the metric value. You can optionally specify a global `refreshInterval` in milliseconds and/or define the `refreshInterval` per metric. Inside the optional `format` object of a metric various formatting styles and transformations can be applied (see below).
 
 ```yaml
 widget:
   type: prometheusmetric
   url: https://prometheus.host.or.ip
-  refreshInterval: 10000 # optional - in milliseconds, defaults to 10s
+  refreshInterval: 10000 # optional - in milliseconds
   metrics:
     - label: Metric 1
       query: alertmanager_alerts{state="active"}

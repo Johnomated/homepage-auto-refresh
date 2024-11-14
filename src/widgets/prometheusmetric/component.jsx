@@ -51,7 +51,7 @@ export default function Component({ service }) {
 
   const { widget } = service;
 
-  const { metrics = [], refreshInterval = 10000 } = widget;
+  const { metrics = [], refreshInterval = widget?.refreshInterval ?? 10000 } = widget;
 
   let prometheusmetricError;
 

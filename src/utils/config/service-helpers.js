@@ -656,7 +656,7 @@ export function cleanServiceGroups(groups) {
         }
         if (type === "prometheusmetric") {
           if (metrics) cleanedService.widget.metrics = metrics;
-          if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
+          // if (refreshInterval) cleanedService.widget.refreshInterval = refreshInterval;
         }
         if (refreshInterval !== undefined) {
           cleanedService.widget.refreshInterval = refreshInterval;
