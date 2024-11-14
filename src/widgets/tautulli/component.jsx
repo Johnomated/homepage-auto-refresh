@@ -165,15 +165,24 @@ export default function Component({ service }) {
     );
   }
 
-  const playing = activityData.response.data.sessions.sort((a, b) => {
-    if (a.view_offset > b.view_offset) {
-      return 1;
-    }
-    if (a.view_offset < b.view_offset) {
-      return -1;
-    }
-    return 0;
-  });
+  let playing;
+  if (enableUser) {
+    playing = activityData.response.data.sessions.sort((a, b) => {
+      const nameA = a.friendly_name || "";
+      const nameB = b.friendly_name || "";
+      return nameA.localeCompare(nameB, undefined, { sensitivity: "base" }); // sensitivity base ignores case
+    });
+  } else {
+    playing = activityData.response.data.sessions.sort((a, b) => {
+      if (a.view_offset > b.view_offset) {
+        return 1;
+      }
+      if (a.view_offset < b.view_offset) {
+        return -1;
+      }
+      return 0;
+    });
+  }
 
   if (playing.length === 0) {
     return (
