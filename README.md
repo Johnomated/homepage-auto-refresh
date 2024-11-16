@@ -1,7 +1,8 @@
 <p align="center">Forked from <a href="https://github.com/gethomepage/homepage">homepage.</a></p>
 <p align="center">This fork allows all service widgets that use the <em>useWidgetAPI</em> to be automatically refreshed when using the <em>refreshInterval</em> key in the services.yaml file.</p>
+<p align="center">Be careful when using refreshInterval with many services. If you are using low powered hardware or have a large amount of services you could essentially DDOS yourself.</p>
 
-<p align="center">In the example below, the plex widget will be set to auto refresh every 5 seconds. If refreshInterval is not defined then the default behavior of focusing the page will be used. Minimum refreshInterval is 1000 ms.</p>
+<p align="center">In the example below, the plex widget will be set to auto refresh every 5 seconds and SABnzbd every 1 second. If refreshInterval is not defined then the default behavior of focusing the page will be used. Minimum refreshInterval is 1000 ms.</p>
 
 ```yaml
 - Plex:
@@ -13,6 +14,19 @@
       url: http://192.168.50.50:32400
       key: apiKey
       refreshInterval: 5000 # optional, time in milliseconds
+
+- SABnzbd:
+    icon: sabnzbd.png
+    href: http://sabnzbd.host.or.ip
+    ping: http://sabnzbd.host.or.ip
+    widget:
+      type: sabnzbd
+      url: http://sabnzbd.host.or.ip
+      key: apiKey
+      refreshInterval: 1000 # optional, minimum is 1000 ms
+      enableQueue: true # optional, defaults to false, does not interfere with default queue block
+      enableHistory: true # optional, defaults to false, shows current history queue
+      limit: 10 # optional, max number of queue/history progress bars to display, defaults to 5
 ```
 
 ## Deploy With Docker
