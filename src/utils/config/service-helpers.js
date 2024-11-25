@@ -494,6 +494,9 @@ export function cleanServiceGroups(groups) {
 
           // technitium
           range,
+
+          // spoolman
+          spoolIds,
         } = cleanedService.widget;
 
         let fieldsList = fields;
@@ -660,6 +663,9 @@ export function cleanServiceGroups(groups) {
         }
         if (refreshInterval !== undefined) {
           cleanedService.widget.refreshInterval = refreshInterval;
+        }
+        if (type === "spoolman") {
+          if (spoolIds !== undefined) cleanedService.widget.spoolIds = spoolIds;
         }
       }
 

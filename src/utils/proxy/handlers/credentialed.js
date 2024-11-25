@@ -36,6 +36,7 @@ export default async function credentialedProxyHandler(req, res, map) {
         headers["X-gotify-Key"] = `${widget.key}`;
       } else if (
         [
+          "argocd",
           "authentik",
           "cloudflared",
           "ghostfolio",
@@ -93,6 +94,8 @@ export default async function credentialedProxyHandler(req, res, map) {
         }
       } else if (widget.type === "wgeasy") {
         headers.Authorization = widget.password;
+      } else if (widget.type === "gitlab") {
+        headers["PRIVATE-TOKEN"] = widget.key;
       } else {
         headers["X-API-Key"] = `${widget.key}`;
       }

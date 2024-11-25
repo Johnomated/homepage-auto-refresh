@@ -1,4 +1,5 @@
 import adguard from "./adguard/widget";
+import argocd from "./argocd/widget";
 import atsumeru from "./atsumeru/widget";
 import audiobookshelf from "./audiobookshelf/widget";
 import authentik from "./authentik/widget";
@@ -31,6 +32,7 @@ import gamedig from "./gamedig/widget";
 import gatus from "./gatus/widget";
 import ghostfolio from "./ghostfolio/widget";
 import gitea from "./gitea/widget";
+import gitlab from "./gitlab/widget";
 import glances from "./glances/widget";
 import gluetun from "./gluetun/widget";
 import gotify from "./gotify/widget";
@@ -101,6 +103,7 @@ import sabnzbd from "./sabnzbd/widget";
 import scrutiny from "./scrutiny/widget";
 import sonarr from "./sonarr/widget";
 import speedtest from "./speedtest/widget";
+import spoolman from "./spoolman/widget";
 import stash from "./stash/widget";
 import stocks from "./stocks/widget";
 import strelaysrv from "./strelaysrv/widget";
@@ -130,6 +133,7 @@ import zabbix from "./zabbix/widget";
 
 const widgets = {
   adguard,
+  argocd,
   atsumeru,
   audiobookshelf,
   authentik,
@@ -161,6 +165,7 @@ const widgets = {
   gatus,
   ghostfolio,
   gitea,
+  gitlab,
   glances,
   gluetun,
   gotify,
@@ -235,6 +240,7 @@ const widgets = {
   scrutiny,
   sonarr,
   speedtest,
+  spoolman,
   stash,
   stocks,
   strelaysrv,
