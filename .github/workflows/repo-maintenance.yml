@@ -1,8 +1,9 @@
-name: 'Repository Maintenance'
+name: "Repository Maintenance"
 
 on:
   schedule:
-    - cron: '0 3 * * *'
+    []
+    # - cron: '0 3 * * *'
   workflow_dispatch:
 
 permissions:
@@ -15,7 +16,7 @@ concurrency:
 
 jobs:
   stale:
-    name: 'Stale'
+    name: "Stale"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v9
@@ -29,14 +30,14 @@ jobs:
             recent activity. It will be closed if no further activity occurs. Thank you
             for your contributions. See our [contributing guidelines](https://github.com/gethomepage/homepage/blob/main/CONTRIBUTING.md#automatic-respoistory-maintenance) for more details.
   lock-threads:
-    name: 'Lock Old Threads'
+    name: "Lock Old Threads"
     runs-on: ubuntu-latest
     steps:
       - uses: dessant/lock-threads@v5
         with:
-          issue-inactive-days: '30'
-          pr-inactive-days: '30'
-          discussion-inactive-days: '30'
+          issue-inactive-days: "30"
+          pr-inactive-days: "30"
+          discussion-inactive-days: "30"
           log-output: true
           issue-comment: >
             This issue has been automatically locked since there
@@ -54,7 +55,7 @@ jobs:
             Please open a new discussion for related concerns.
             See our [contributing guidelines](https://github.com/gethomepage/homepage/blob/main/CONTRIBUTING.md#automatic-repository-maintenance) for more details.
   close-answered-discussions:
-    name: 'Close Answered Discussions'
+    name: "Close Answered Discussions"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
@@ -110,7 +111,7 @@ jobs:
               await sleep(1000)
             }
   close-outdated-discussions:
-    name: 'Close Outdated Discussions'
+    name: "Close Outdated Discussions"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
@@ -201,7 +202,7 @@ jobs:
               }
             }
   close-unsupported-feature-requests:
-    name: 'Close Unsupported Feature Requests'
+    name: "Close Unsupported Feature Requests"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/github-script@v7
