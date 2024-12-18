@@ -106,7 +106,11 @@ export async function servicesFromDocker() {
                   type: "service",
                 };
               }
-              shvl.set(constructedService, value, substituteEnvironmentVars(containerLabels[label]));
+              let substitutedVal = substituteEnvironmentVars(containerLabels[label]);
+              if (value === "widget.version") {
+                substitutedVal = parseInt(substitutedVal, 10);
+              }
+              shvl.set(constructedService, value, substitutedVal);
             }
           });
 
@@ -402,6 +406,9 @@ export function cleanServiceGroups(groups) {
           mappings,
           display,
 
+          // deluge, qbittorrent
+          enableLeechProgress,
+
           // diskstation
           volume,
 
@@ -421,7 +428,7 @@ export function cleanServiceGroups(groups) {
           // frigate
           enableRecentEvents,
 
-          // glances, immich, mealie, pihole, pfsense
+          // beszel, glances, immich, mealie, pihole, pfsense
           version,
 
           // glances
@@ -478,9 +485,6 @@ export function cleanServiceGroups(groups) {
 
           // proxmox
           node,
-
-          // qbittorrent
-          enableLeechProgress,
 
           // speedtest
           bitratePrecision,
@@ -574,6 +578,9 @@ export function cleanServiceGroups(groups) {
           if (allowScrolling) widget.allowScrolling = allowScrolling;
           // if (refreshInterval) widget.refreshInterval = refreshInterval;
         }
+        if (["deluge", "qbittorrent"].includes(type)) {
+          if (enableLeechProgress !== undefined) widget.enableLeechProgress = JSON.parse(enableLeechProgress);
+        }
         if (["opnsense", "pfsense"].includes(type)) {
           if (wan) widget.wan = wan;
         }
@@ -604,7 +611,7 @@ export function cleanServiceGroups(groups) {
           if (snapshotHost) widget.snapshotHost = snapshotHost;
           if (snapshotPath) widget.snapshotPath = snapshotPath;
         }
-        if (["glances", "immich", "mealie", "pfsense", "pihole"].includes(type)) {
+        if (["beszel", "glances", "immich", "mealie", "pfsense", "pihole"].includes(type)) {
           if (version) widget.version = parseInt(version, 10);
         }
         if (type === "glances") {
@@ -681,9 +688,6 @@ export function cleanServiceGroups(groups) {
         }
         if (type === "spoolman") {
           if (spoolIds !== undefined) widget.spoolIds = spoolIds;
-        }
-        if (type === "qbittorrent") {
-          if (enableLeechProgress !== undefined) widget.enableLeechProgress = JSON.parse(enableLeechProgress);
         }
         return widget;
       });
