@@ -65,5 +65,5 @@ dialog ::-webkit-scrollbar {
 }
 
 .chart + .chart {
-  margin-top: 36px;
+  margin-top: 2em;
 }
