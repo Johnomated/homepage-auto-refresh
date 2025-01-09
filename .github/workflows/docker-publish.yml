@@ -46,7 +46,7 @@ jobs:
 
   build:
     name: Docker Build & Push
-    if: github.repository == 'gethomepage/homepage' #johnomated/homepage
+    if: github.repository == 'gethomepage/homepage' #johnagil/homepage
     runs-on: self-hosted #ubuntu-22.04
     needs:
       - pre-commit

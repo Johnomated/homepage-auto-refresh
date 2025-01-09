@@ -36,7 +36,7 @@ Using docker compose:
 ```yaml
 services:
   homepage:
-    image: ghcr.io/johnomated/homepage-auto-refresh:latest
+    image: ghcr.io/johnagil/homepage-auto-refresh:latest
     container_name: homepage
     environment:
       PUID: 1000 # optional, your user id
@@ -59,7 +59,7 @@ docker run --name homepage \
   -v /path/to/config:/app/config \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
   --restart unless-stopped \
-  ghcr.io/johnomated/homepage-auto-refresh:latest
+  ghcr.io/johnagil/homepage-auto-refresh:latest
 ```
 
 <p align="center">
