@@ -90,14 +90,24 @@ export default function Item({ service, groupName, useEqualHeights }) {
           >
             {service.ping && (
               <div className="flex-shrink-0 flex items-center justify-center service-tag service-ping">
-                <Ping groupName={groupName} serviceName={service.name} style={statusStyle} />
+                <Ping
+                  groupName={groupName}
+                  serviceName={service.name}
+                  interval={service.pingInterval}
+                  style={statusStyle}
+                />
                 <span className="sr-only">Ping status</span>
               </div>
             )}
 
             {service.siteMonitor && (
               <div className="flex-shrink-0 flex items-center justify-center service-tag service-site-monitor">
-                <SiteMonitor groupName={groupName} serviceName={service.name} style={statusStyle} />
+                <SiteMonitor
+                  groupName={groupName}
+                  serviceName={service.name}
+                  interval={service.pingInterval}
+                  style={statusStyle}
+                />
                 <span className="sr-only">Site monitor status</span>
               </div>
             )}

@@ -1,14 +1,21 @@
 <p align="center">Forked from <a href="https://github.com/gethomepage/homepage">homepage.</a></p>
-<p align="center">This fork allows all service widgets that use the <em>useWidgetAPI</em> to be automatically refreshed when using the <em>refreshInterval</em> key in the services.yaml file.</p>
-<p align="center">Be careful when using refreshInterval with many services. If you are using low powered hardware or have a large amount of services you could essentially DDOS yourself.</p>
 
-<p align="center">In the example below, the plex widget will be set to auto refresh every 5 seconds and SABnzbd every 1 second. If refreshInterval is not defined then the default behavior of focusing the page will be used. Minimum refreshInterval is 1000 ms.</p>
+<p align="center">All thanks should go to the developers and maintainers of the main project.</a></p>
+
+<p align="center">This fork allows all service widgets that use the <code>useWidgetAPI</code> to be automatically refreshed when using the <code>refreshInterval</code> key in the services.yaml file. There is also a <code>pingInterval</code> key which controls the time between <code>ping</code> and <code>siteMonitor</code>.</p>
+
+<p align="center">Be careful when using <code>refreshInterval</code> and <code>pingMonitor</code> with many services. If you are using low powered hardware or have a large amount of services you could essentially DDOS yourself.</p>
+
+<p align="center">In the example below, the plex widget will be set to auto refresh every 5 seconds and SABnzbd every 1 second. If <code>refreshInterval</code> is not defined then the default behavior of focusing the page will be used. Minimum <code>refreshInterval</code> is 1000 ms. A <code>pingInterval</code> is also defined. If using <code>ping</code> or <code>siteMonitor</code> and no <code>pingInterval</code> is defined it will default to 30 seconds.</p> Minimum <code>pingInterval</code> is 1000 ms.
 
 ```yaml
 - Plex:
     icon: plex.png
     href: https://app.plex.tv
     ping: http://192.168.50.50:32400
+    siteMonitor: http://192.168.50.50:32400
+    # pingInterval will ping and monitor the IP above every 5 seconds
+    pingInterval: 5000 # optional, time in milliseconds, defaults to 30000
     widget:
       type: plex
       url: http://192.168.50.50:32400
@@ -19,6 +26,8 @@
     icon: sabnzbd.png
     href: http://sabnzbd.host.or.ip
     ping: http://sabnzbd.host.or.ip
+    # pingInterval will ping the site above every 10 seconds
+    pingInterval: 10000 # optional, time in milliseconds, defaults to 30000
     widget:
       type: sabnzbd
       url: http://sabnzbd.host.or.ip

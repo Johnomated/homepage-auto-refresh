@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import useSWR from "swr";
 
-export default function SiteMonitor({ groupName, serviceName, style }) {
+export default function SiteMonitor({ groupName, serviceName, interval, style }) {
   const { t } = useTranslation();
   const { data, error } = useSWR(`/api/siteMonitor?${new URLSearchParams({ groupName, serviceName }).toString()}`, {
-    refreshInterval: 30000,
+    refreshInterval: interval ? Math.max(1000, interval) : 30000, // 1000 minimum, 30000 default
   });
 
   let colorClass = "text-black/20 dark:text-white/40 opacity-20";
