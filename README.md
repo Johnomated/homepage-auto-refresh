@@ -50,6 +50,7 @@ services:
     environment:
       PUID: 1000 # optional, your user id
       PGID: 1000 # optional, your group id
+      - HOMEPAGE_ALLOWED_HOSTS=your.url.com # required when deploying via public URL
     ports:
       - 3000:3000
     volumes:
@@ -64,6 +65,7 @@ or docker run:
 docker run --name homepage \
   -e PUID=1000 \
   -e PGID=1000 \
+  -e HOMEPAGE_ALLOWED_HOSTS=your.url.com \
   -p 3000:3000 \
   -v /path/to/config:/app/config \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
