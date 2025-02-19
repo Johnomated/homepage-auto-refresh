@@ -1,9 +1,8 @@
 import { useTranslation } from "next-i18next";
-
-import HistoryEntry from "components/widgets/history/historyEntry";
-import QueueEntry from "components/widgets/queue/queueEntry";
 import Container from "components/services/widget/container";
 import Block from "components/services/widget/block";
+import HistoryEntry from "components/widgets/history/historyEntry";
+import QueueEntry from "components/widgets/queue/queueEntry";
 
 import useWidgetAPI from "utils/proxy/use-widget-api";
 
